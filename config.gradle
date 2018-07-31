@@ -1,0 +1,6 @@
+ext {
+    //support
+    supportLibraryVersion = '27.1.0'
+    //scan
+    zxing = '3.0.0'
+}
