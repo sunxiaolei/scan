@@ -1,9 +1,7 @@
-package sun.xiaolei.scanlib.scaner;
+package sun.xiaolei.scanlib.scan;
 
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
-
-import sun.xiaolei.scanlib.scaner.BitmapLuminanceSource;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.BinaryBitmap;

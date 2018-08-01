@@ -1,10 +1,10 @@
-package sun.xiaolei.scanlib.scaner;
+package sun.xiaolei.scanlib.scan;
 
 import android.os.Handler;
 import android.os.Looper;
 
 
-import sun.xiaolei.scanlib.ScanerActivity;
+import sun.xiaolei.scanlib.ScannerActivity;
 
 import java.util.concurrent.CountDownLatch;
 
@@ -14,10 +14,10 @@ import java.util.concurrent.CountDownLatch;
 final class DecodeThread extends Thread {
 
     private final CountDownLatch handlerInitLatch;
-    ScanerActivity activity;
+    ScannerActivity activity;
     private Handler handler;
 
-    DecodeThread(ScanerActivity activity) {
+    DecodeThread(ScannerActivity activity) {
         this.activity = activity;
         handlerInitLatch = new CountDownLatch(1);
     }

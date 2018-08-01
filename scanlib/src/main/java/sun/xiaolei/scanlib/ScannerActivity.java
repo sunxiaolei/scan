@@ -27,17 +27,17 @@ import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
-import sun.xiaolei.scanlib.scaner.CameraManager;
-import sun.xiaolei.scanlib.scaner.CaptureActivityHandler;
-import sun.xiaolei.scanlib.scaner.QrBarTool;
-import sun.xiaolei.scanlib.scaner.decoding.InactivityTimer;
+import sun.xiaolei.scanlib.scan.CameraManager;
+import sun.xiaolei.scanlib.scan.CaptureActivityHandler;
+import sun.xiaolei.scanlib.scan.QrBarTool;
+import sun.xiaolei.scanlib.scan.decoding.InactivityTimer;
 
 import com.google.zxing.Result;
 
 import java.io.IOException;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public abstract class ScanerActivity extends AppCompatActivity {
+public abstract class ScannerActivity extends AppCompatActivity {
 
     private InactivityTimer inactivityTimer;
 
@@ -241,7 +241,7 @@ public abstract class ScanerActivity extends AppCompatActivity {
             return;
         }
         if (handler == null) {
-            handler = new CaptureActivityHandler(ScanerActivity.this);
+            handler = new CaptureActivityHandler(ScannerActivity.this);
         }
     }
     //========================================打开本地图片识别二维码 end=================================

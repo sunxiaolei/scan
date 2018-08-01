@@ -1,4 +1,4 @@
-package sun.xiaolei.scanlib.scaner;
+package sun.xiaolei.scanlib.scan;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -7,7 +7,7 @@ import android.os.Message;
 import android.util.Log;
 
 import sun.xiaolei.scanlib.R;
-import sun.xiaolei.scanlib.ScanerActivity;
+import sun.xiaolei.scanlib.ScannerActivity;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.BinaryBitmap;
 import com.google.zxing.DecodeHintType;
@@ -28,9 +28,9 @@ import static android.content.ContentValues.TAG;
 final class DecodeHandler extends Handler {
 
     private final MultiFormatReader multiFormatReader;
-    ScanerActivity activity = null;
+    ScannerActivity activity = null;
 
-    DecodeHandler(ScanerActivity activity) {
+    DecodeHandler(ScannerActivity activity) {
         multiFormatReader = new MultiFormatReader();
 
         // 解码的参数

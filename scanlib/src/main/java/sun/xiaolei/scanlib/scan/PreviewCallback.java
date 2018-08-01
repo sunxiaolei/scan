@@ -1,4 +1,4 @@
-package sun.xiaolei.scanlib.scaner;
+package sun.xiaolei.scanlib.scan;
 
 import android.graphics.Point;
 import android.hardware.Camera;

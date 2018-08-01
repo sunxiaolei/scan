@@ -1,10 +1,10 @@
-package sun.xiaolei.scanlib.scaner;
+package sun.xiaolei.scanlib.scan;
 
 import android.os.Handler;
 import android.os.Message;
 
 import sun.xiaolei.scanlib.R;
-import sun.xiaolei.scanlib.ScanerActivity;
+import sun.xiaolei.scanlib.ScannerActivity;
 
 import com.google.zxing.Result;
 
@@ -15,10 +15,10 @@ import com.google.zxing.Result;
 public final class CaptureActivityHandler extends Handler {
 
     DecodeThread decodeThread = null;
-    ScanerActivity activity = null;
+    ScannerActivity activity = null;
     private State state;
 
-    public CaptureActivityHandler(ScanerActivity activity) {
+    public CaptureActivityHandler(ScannerActivity activity) {
         this.activity = activity;
         decodeThread = new DecodeThread(activity);
         decodeThread.start();

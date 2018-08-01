@@ -6,9 +6,9 @@ import android.widget.Toast;
 
 import com.google.zxing.Result;
 
-import sun.xiaolei.scanlib.ScanerActivity;
+import sun.xiaolei.scanlib.ScannerActivity;
 
-public class MainActivity extends ScanerActivity {
+public class MainActivity extends ScannerActivity {
 
 
     @Override

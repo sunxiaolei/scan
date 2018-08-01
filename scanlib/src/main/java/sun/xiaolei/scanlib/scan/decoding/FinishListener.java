@@ -1,4 +1,4 @@
-package sun.xiaolei.scanlib.scaner.decoding;
+package sun.xiaolei.scanlib.scan.decoding;
 
 import android.app.Activity;
 import android.content.DialogInterface;
