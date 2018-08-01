@@ -12,8 +12,16 @@ public class MainActivity extends ScanerActivity {
 
 
     @Override
-    public void handleDecode(Result result) {
-        super.handleDecode(result);
+    public ScanConfig initConfig() {
+        ScanConfig config = new ScanConfig();
+        config.showLocalImage = true;
+        config.showFlash = false;
+        config.vibrator = true;
+        return config;
+    }
+
+    @Override
+    public void handleResult(Result result) {
         if (result != null) {
             if (result.getText().equals("123")) {
                 Toast.makeText(this, result.getText(), Toast.LENGTH_LONG).show();
@@ -24,7 +32,7 @@ public class MainActivity extends ScanerActivity {
                         .setPositiveButton("重试", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                restart();
+                                restartRreview();
                             }
                         })
                         .create()

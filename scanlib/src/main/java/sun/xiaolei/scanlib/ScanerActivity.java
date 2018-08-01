@@ -37,7 +37,7 @@ import com.google.zxing.Result;
 import java.io.IOException;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class ScanerActivity extends AppCompatActivity {
+public abstract class ScanerActivity extends AppCompatActivity {
 
     private InactivityTimer inactivityTimer;
 
@@ -72,11 +72,6 @@ public class ScanerActivity extends AppCompatActivity {
     private boolean hasSurface;
 
     /**
-     * 扫描成功后是否震动
-     */
-    private boolean vibrate = true;
-
-    /**
      * 闪光灯开启状态
      */
     private boolean mFlashing = true;
@@ -85,6 +80,12 @@ public class ScanerActivity extends AppCompatActivity {
      * 闪光灯 按钮
      */
     private ImageView mIvLight;
+    /**
+     * 本地图片
+     */
+    private ImageView mIvLocalImg;
+
+    private ScanConfig config;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -95,6 +96,7 @@ public class ScanerActivity extends AppCompatActivity {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);  //透明状态栏
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION); //透明导航栏
         }
+        config = initConfig();
         //界面控件初始化
         initView();
         //权限初始化
@@ -159,8 +161,15 @@ public class ScanerActivity extends AppCompatActivity {
 
     private void initView() {
         mIvLight = findViewById(R.id.top_mask);
+        mIvLocalImg = findViewById(R.id.top_openpicture);
         mContainer = findViewById(R.id.capture_containter);
         mCropLayout = findViewById(R.id.capture_crop_layout);
+        if (!config.showFlash) {
+            mIvLight.setVisibility(View.GONE);
+        }
+        if (!config.showLocalImage) {
+            mIvLocalImg.setVisibility(View.GONE);
+        }
     }
 
     private void initPermission() {
@@ -261,12 +270,19 @@ public class ScanerActivity extends AppCompatActivity {
 
     public void handleDecode(Result result) {
         inactivityTimer.onActivity();
-        //扫描成功之后的振动提示
-        Vibrator vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
-        vibrator.vibrate(200);
+        if (config.vibrator) {
+            //扫描成功之后的振动提示
+            Vibrator vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
+            vibrator.vibrate(200);
+        }
+        handleResult(result);
     }
 
-    public void restart() {
+    public abstract ScanConfig initConfig();
+
+    public abstract void handleResult(Result result);
+
+    public void restartRreview() {
         if (handler != null) {
             handler.sendEmptyMessage(R.id.restart_preview);
         }
@@ -293,4 +309,11 @@ public class ScanerActivity extends AppCompatActivity {
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(intent, GET_IMAGE_FROM_PHONE);
     }
+
+    public class ScanConfig {
+        public boolean showLocalImage;
+        public boolean showFlash;
+        public boolean vibrator;
+    }
+
 }
